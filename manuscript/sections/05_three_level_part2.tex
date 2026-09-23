@@ -1,0 +1,148 @@
+\begin{theorem}[Sharp asymptotic constant for the optimized metric]
+\label{thm:metric_sandwich}
+For $0<\varepsilon\leq1/2$, the coupled chain~\eqref{eq:threelevel}
+satisfies
+\begin{equation}\label{eq:metric_sandwich}
+ \boxed{\kappa_*(A_\varepsilon)\geq\frac{8}{\varepsilon^2}.}
+\end{equation}
+Moreover,
+\begin{equation}\label{eq:metric_limit}
+ \boxed{\lim_{\varepsilon\downarrow0}
+ \varepsilon^2\kappa_*(A_\varepsilon)=8.}
+\end{equation}
+Consequently, because the smallest eigenvalue of $A_\varepsilon$ is one,
+\begin{equation}\label{eq:certificate_sharp_asymptotic}
+ \sup_{\eta>0:\,A_\varepsilon^\dagger\eta=\eta A_\varepsilon}
+ \frac{1}{\sqrt{\kappa_2(\eta)}}
+ =\frac{\varepsilon}{2\sqrt2}\,[1+o(1)] .
+\end{equation}
+Thus the pairwise overlap estimate gives the correct power of
+$\varepsilon$ but misses the leading three-state constant by a factor of two
+at the level of $\kappa_*$.
+\end{theorem}
+\begin{proof}
+Choose the eigenvector matrix
+\begin{equation}\label{eq:chain_V}
+ V_\varepsilon=\begin{pmatrix}1&1&1\\0&\varepsilon&1\\0&0&1-\varepsilon\end{pmatrix}.
+\end{equation}
+By Proposition~\ref{prop:weights}, every admissible metric is
+\begin{equation}
+ \eta=V_\varepsilon^{-\dagger}\diag(p,q,r)V_\varepsilon^{-1},
+ \qquad p,q,r>0,
+\end{equation}
+with $V_\varepsilon$ given in~\eqref{eq:chain_V}.  Overall positive
+rescaling does not change $\kappa_2(\eta)$, so set $r=1$.  Let
+\begin{equation}
+ x=\frac{1}{\sqrt2}(0,1,-1)^\mathsf{T},\qquad y=(1,0,0)^\mathsf{T}.
+\end{equation}
+Since $\kappa_2(\eta)=\lambda_{\max}(\eta)
+\lambda_{\max}(\eta^{-1})$, the Rayleigh principle gives
+\begin{equation}\label{eq:rayleigh_product}
+ \kappa_2(\eta)\geq(x^\dagger\eta x)(y^\dagger\eta^{-1}y).
+\end{equation}
+A direct calculation yields
+\begin{align}
+ x^\dagger\eta x
+ &=\frac{4(1-\varepsilon)^2p+(2-\varepsilon)^2q+\varepsilon^2}
+ {2\varepsilon^2(1-\varepsilon)^2}
+ \geq \frac{2(p+q)}{\varepsilon^2},\label{eq:xetax}\\
+ y^\dagger\eta^{-1}y&=\frac1p+\frac1q+1
+ \geq\frac1p+\frac1q.\label{eq:yetainvy}
+\end{align}
+Here $(2-\varepsilon)^2\geq4(1-\varepsilon)^2$ for
+$0<\varepsilon<1$.  Combining~\eqref{eq:rayleigh_product}--
+\eqref{eq:yetainvy} and the arithmetic--geometric mean inequality gives
+\begin{equation}
+ \kappa_2(\eta)\geq
+ \frac{2}{\varepsilon^2}(p+q)
+ \left(\frac1p+\frac1q\right)
+ =\frac{2(p+q)^2}{pq\,\varepsilon^2}
+ \geq\frac8{\varepsilon^2}.
+\end{equation}
+Taking the infimum over admissible metrics proves~\eqref{eq:metric_sandwich}.
+
+For the matching asymptotic upper bound choose
+\begin{equation}\label{eq:asymptotic_metric}
+ W_\varepsilon=\diag(\varepsilon/2,\varepsilon/2,1),\qquad
+ \eta^{\rm as}_\varepsilon=
+ V_\varepsilon^{-\dagger}W_\varepsilon V_\varepsilon^{-1}.
+\end{equation}
+This is admissible by Proposition~\ref{prop:weights}.  If its ordered
+eigenvalues are $0<\mu_1\leq\mu_2\leq\mu_3$, then direct evaluation of
+the elementary symmetric functions gives
+\begin{align}
+ \tr\eta^{\rm as}_\varepsilon
+ &=\frac{(\varepsilon^2+2)(\varepsilon^2-2\varepsilon+2)}
+ {2\varepsilon(1-\varepsilon)^2},\label{eq:as_trace}\\
+ \sum_{i<j}\mu_i\mu_j
+ &=\frac{(1+\varepsilon)(\varepsilon^2-\varepsilon+4)}
+ {4\varepsilon(1-\varepsilon)^2},\label{eq:as_s2}\\
+ \det\eta^{\rm as}_\varepsilon&=\frac1{4(1-\varepsilon)^2}.
+ \label{eq:as_det}
+\end{align}
+Moreover, direct multiplication of~\eqref{eq:asymptotic_metric} gives
+\begin{equation}
+ \varepsilon\eta^{\rm as}_\varepsilon\longrightarrow
+ \begin{pmatrix}0&0&0\\0&1&-1\\0&-1&1\end{pmatrix},
+\end{equation}
+whose eigenvalues are $0,0,2$.  Hence
+$\varepsilon\mu_3\to2$.  From~\eqref{eq:as_det},
+$\mu_1\mu_2=\det(\eta^{\rm as}_\varepsilon)/\mu_3
+\sim\varepsilon/8$.  Multiplying~\eqref{eq:as_s2} by
+$\varepsilon$ then yields $\mu_1+\mu_2\to1/2$.
+Therefore
+\begin{equation}
+ \mu_2\to\frac12,\qquad
+ \frac{\mu_1}{\varepsilon}\to\frac14.
+\end{equation}
+Therefore
+\begin{equation}
+ \kappa_2(\eta^{\rm as}_\varepsilon)
+ =\frac{8}{\varepsilon^2}[1+o(1)].
+\end{equation}
+Together with~\eqref{eq:metric_sandwich}, this proves
+\eqref{eq:metric_limit}; taking inverse square roots proves
+\eqref{eq:certificate_sharp_asymptotic}.
+\end{proof}
+
+\begin{proposition}[A uniform constructive upper bound]
+\label{prop:constructive_metric}
+For $0<\varepsilon\leq1/2$, define
+\begin{equation}\label{eq:constructive_eta}
+ B_\varepsilon=
+ \begin{pmatrix}
+ \varepsilon&-1&1\\
+ 0&1&-(1-\varepsilon)^{-1}\\
+ 0&0&(1-\varepsilon)^{-1}
+ \end{pmatrix},\qquad
+ \widehat\eta_\varepsilon=B_\varepsilon^\dagger B_\varepsilon.
+\end{equation}
+Then $\widehat\eta_\varepsilon$ is admissible and
+\begin{equation}\label{eq:constructive_upper}
+ \kappa_2(\widehat\eta_\varepsilon)
+ \leq\frac{135}{4\varepsilon^2}.
+\end{equation}
+Thus, together with Theorem~\ref{thm:metric_sandwich},
+\begin{equation}
+ \frac8{\varepsilon^2}\leq\kappa_*(A_\varepsilon)
+ \leq\frac{135}{4\varepsilon^2},
+\end{equation}
+while the sharper candidate~\eqref{eq:asymptotic_metric} determines the
+exact leading constant as $\varepsilon\downarrow0$.
+\end{proposition}
+\begin{proof}
+Writing $B_\varepsilon=D_\varepsilon V_\varepsilon^{-1}$ with
+$D_\varepsilon=\diag(\varepsilon,\varepsilon,1)$ shows admissibility
+from Proposition~\ref{prop:weights}.  For every invertible $B$,
+$\kappa_2(B^\dagger B)=\kappa_2(B)^2
+\leq\|B\|_F^2\|B^{-1}\|_F^2$.  Here
+\begin{align}
+ \|B_\varepsilon\|_F^2
+ &=\varepsilon^2+3+\frac{2}{(1-\varepsilon)^2}
+ \leq\frac{45}{4},\\
+ \|B_\varepsilon^{-1}\|_F^2
+ &=\frac{2}{\varepsilon^2}+3+(1-\varepsilon)^2
+ \leq\frac{3}{\varepsilon^2},
+\end{align}
+which proves~\eqref{eq:constructive_upper}.
+\end{proof}
