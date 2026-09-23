@@ -1,0 +1,81 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{left=27mm,right=27mm,top=25mm,bottom=26mm}
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm}
+\usepackage{graphicx,booktabs,array,microtype}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!55!black}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\setlist{nosep,leftmargin=*}
+\usepackage{caption}
+\usepackage{authblk}
+\renewcommand{\Authfont}{\normalsize}
+\renewcommand{\Affilfont}{\small}
+\setlength{\affilsep}{0.5em}
+\captionsetup{font=small}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\cond}{cond}
+\DeclareMathOperator{\spec}{spec}
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Rn}{\mathbb{R}}
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert #1\right\rvert}
+\newcommand{\ee}{\mathrm{e}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\ket}[1]{\lvert #1\rangle}
+\newcommand{\sigmin}{\sigma_{\min}}
+\newcommand{\kg}{\kappa_2}
+\title{\bfseries Metric Conditioning and Stable Spectral Inversion\\[3pt]
+ near Exceptional Points in Pseudo-Hermitian Systems}
+\author[1]{Dorcas Attuabea Addo}
+\author[2]{Richard Kena Boadi}
+\author[2]{Jeffrey Ezrean}
+\author[3]{Richard Kwame Ansah}
+\author[4]{Peter Yeboah}
+\affil[1]{Department of Mathematics Education, University of Education, Winneba, Ghana}
+\affil[2]{Department of Mathematics, Kwame Nkrumah University of Science and Technology, Kumasi, Ghana}
+\affil[3]{Department of Mathematics and Statistics, University of Energy and Natural Resources, Sunyani, Ghana}
+\affil[4]{Department of Teacher Education, Kwame Nkrumah University of Science and Technology, Kumasi, Ghana}
+\date{}
+\begin{document}
+\maketitle
+\begin{abstract}
+For a diagonalizable non-Hermitian Hamiltonian with real spectrum, a positive metric operator
+can render the Hamiltonian self-adjoint in a modified inner product.  Near an exceptional
+point, however, the metric may become strongly ill-conditioned even when the Hamiltonian
+remains uniformly invertible in the reference Euclidean norm.  We quantify this separation.
+After deriving general metric-based perturbation bounds, we analyze two exactly solvable
+families.  In a two-level model the condition-number-minimizing metric yields a Euclidean
+invertibility certificate that is sharp.  In contrast, for a coupled three-level family
+$A_\varepsilon$ approaching a defective but nonzero eigenvalue, the Euclidean inverse remains
+uniformly bounded while every compatible positive metric becomes ill-conditioned.  We prove
+the sharp asymptotic law
+\[
+ \kappa_*(A_\varepsilon)\sim \frac{8}{\varepsilon^2},\qquad \varepsilon\downarrow0,
+\]
+where $\kappa_*$ is the minimum spectral condition number over all positive compatible
+metrics, and we construct an asymptotically optimal metric attaining the constant $8$.
+Consequently, the best metric-induced Euclidean invertibility certificate vanishes linearly,
+although the exact distance to singularity stays bounded away from zero.  A normalized-solution
+perturbation estimate shows that inversion itself remains stable.  The same separation is then
+embedded in a genuinely coupled $N$-level bidiagonal family, uniformly in dimension.  A standard
+Hermitian dilation is included only to emphasize that singular-value conditioning need not
+inherit the metric singularity.  These results distinguish exceptional-point eigenvector
+geometry from ordinary inversion stability and identify a precise limitation of metric-based
+conditioning as a proxy for Euclidean spectral inversion.
+\end{abstract}
+\noindent\textbf{Keywords:} pseudo-Hermitian Hamiltonian; quasi-Hermiticity; metric operator;
+exceptional point; spectral inversion; pseudospectrum; eigenvector coalescence.\\
+\noindent\textbf{MSC 2020 (provisional):} 47A10, 81Q10, 65F35.
