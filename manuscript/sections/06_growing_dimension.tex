@@ -1,0 +1,134 @@
+\section{Growing-dimensional extension and a metric-free inversion baseline}
+\label{sec:scalable}
+The three-level mechanism is not a fixed-dimensional accident.  We now embed the same
+eigenvector-coalescence geometry into a genuinely coupled family of increasing dimension.
+The purpose is mathematical: to show that the separation between metric conditioning and
+Euclidean inversion stability persists uniformly with dimension.  A standard Hermitian
+dilation is then recorded only as a computational implication: it uses singular values rather
+than a pseudo-Hermitian metric and therefore makes explicit why metric ill-conditioning does
+not, by itself, imply hard spectral inversion.
+
+\subsection{A coupled bidiagonal family with bounded inverse}
+\begin{theorem}[Nonzero spectral coalescence in every dimension]
+\label{thm:growingchain}
+For an integer $N\geq3$ and $0<\varepsilon\leq1/2$, let
+\begin{equation}\label{eq:growingchain}
+ \begin{aligned}
+ C_{N,\varepsilon}&=\operatorname{diag}(d_1,\ldots,d_N)
+  +\sum_{j=1}^{N-1}e_je_{j+1}^{\mathsf T},\\
+ d_1&=1,\quad d_2=1+\varepsilon,\quad
+ d_j=2+\frac{j-3}{N-2}\quad (3\leq j\leq N).
+ \end{aligned}
+\end{equation}
+The matrix has $N$ distinct, positive eigenvalues, is diagonalizable and
+admits positive compatible metrics. Nevertheless,
+\begin{equation}\label{eq:growing_bounds}
+\kappa_*(C_{N,\varepsilon})\geq\frac{8}{\varepsilon^2},
+\qquad \|C_{N,\varepsilon}\|_2\leq4,
+\qquad \|C_{N,\varepsilon}^{-1}\|_2\leq\sqrt6,
+\qquad r_{\mathrm{sing}}(C_{N,\varepsilon})\geq\frac1{\sqrt6}.
+\end{equation}
+Thus the best metric-based Euclidean invertibility certificate is at most
+$\varepsilon/(2\sqrt2)$ while the exact distance to singularity remains uniformly
+positive in \emph{both} $N$ and $\varepsilon$. Moreover, if a scalar polynomial
+$q$ satisfies $q(C_{N,\varepsilon})=C_{N,\varepsilon}^{-1}$,
+then $\deg q\geq N-1$.
+\end{theorem}
+\begin{proof}
+The diagonal entries are distinct and lie in $[1,3)$, so the upper triangular
+matrix is diagonalizable with positive spectrum. The first three right eigenvectors are supported on
+$S=\operatorname{span}\{e_1,e_2,e_3\}$ and coincide with those of
+$A_\varepsilon$ in~\eqref{eq:threelevel}.  Order an eigenvector matrix so that
+\begin{equation}
+ V=\begin{pmatrix}V_\varepsilon&R\\0&V_{\rm tail}\end{pmatrix},
+\end{equation}
+where $V_\varepsilon$ is the three-dimensional matrix in
+\eqref{eq:chain_V}.  For any admissible metric,
+$\eta=V^{-\dagger}WV^{-1}$ with a positive diagonal $W$ (the eigenvalues
+of $C_{N,\varepsilon}$ are simple).  For the vector
+$x=2^{-1/2}(0,1,-1,0,\ldots,0)^{\mathsf T}$, block triangularity gives
+$V^{-1}x=(V_\varepsilon^{-1}x_{1:3},0)^{\mathsf T}$, so
+$x^\dagger\eta x$ is exactly the same three-weight expression used in
+\eqref{eq:xetax}.  For $y=e_1$, the identity
+$\eta^{-1}=VW^{-1}V^\dagger$ shows that $y^\dagger\eta^{-1}y$ contains the
+three positive contributions appearing in~\eqref{eq:yetainvy}, plus
+nonnegative contributions from the remaining eigendirections.  Hence the
+Rayleigh-product argument of Theorem~\ref{thm:metric_sandwich} applies
+without replacing the inverse of a compression by a compressed inverse and yields
+$\kappa_2(\eta)\geq8/\varepsilon^2$.  Taking the infimum gives
+$\kappa_*(C_{N,\varepsilon})\geq8/\varepsilon^2$.
+The strictly upper shift has spectral norm one and $\max_jd_j<3$,
+whence $\|C_{N,\varepsilon}\|_2\leq4$.
+The inverse is upper triangular with
+\begin{equation}\label{eq:growinginverse}
+ (C_{N,\varepsilon}^{-1})_{ij}=
+ \begin{cases}(-1)^{j-i}\displaystyle\prod_{k=i}^{j}d_k^{-1},&i\leq j,\\
+ 0,&i>j.\end{cases}
+\end{equation}
+For rows $i\geq3$, the sum of absolute entries is at most
+$\sum_{r\geq1}2^{-r}=1$; the corresponding sums for rows two and one
+are at most two and three. Hence $\|C^{-1}\|_\infty\leq3$.
+For columns $j\geq3$, the entries in rows $i\geq3$ sum to at most one,
+while those in rows one and two sum to at most one together.
+Columns one and two have absolute sums at most one and two, respectively.
+Thus $\|C^{-1}\|_1\leq2$, and
+$\|C^{-1}\|_2\leq\sqrt{\|C^{-1}\|_1\|C^{-1}\|_\infty}\leq\sqrt6$.
+Equation~\eqref{eq:radius} gives the singularity-radius bound.
+Finally, if $\deg q\leq N-2$, then $xq(x)-1$ has degree at most
+$N-1$ but vanishes at the $N$ distinct eigenvalues of $C$.
+It would therefore vanish identically, contradicting its constant
+term $-1$. Hence $\deg q\geq N-1$.
+\end{proof}
+\begin{remark}[What the polynomial degree does and does not count]
+The degree lower bound is \emph{only} for exact scalar polynomials in
+$C_{N,\varepsilon}$. A monomial-product and linear-combination implementation
+of such an exact polynomial has a branch using at least $N-1$ input-matrix
+blocks. The statement is \emph{not} a query lower bound for an arbitrary
+quantum linear-system algorithm, which may use $C^\dagger$, a Hermitian
+dilation, rational approximations, or singular-value transformations.
+In particular, $N=2^q$ would turn this particular exact polynomial
+implementation into one with exponential degree in the data-qubit count $q$.
+No gate count for an oracle encoding this coupled chain is assumed here.
+\end{remark}
+
+\subsection{A standard Hermitian-dilation baseline}
+\begin{proposition}[A metric-free Hermitian reduction]
+\label{prop:hermitian_dilation}
+Let $A$ be invertible with a unitary block encoding
+$\langle0^a|U_A|0^a\rangle=A/\alpha$.
+On an additional flag qubit define
+\begin{equation}\label{eq:herm_dilation}
+ \mathcal H_A=\begin{pmatrix}0&A\\A^\dagger&0\end{pmatrix},\qquad
+ \mathcal U_A=|0\rangle\langle1|\otimes U_A
+ +|1\rangle\langle0|\otimes U_A^\dagger.
+\end{equation}
+Then $\mathcal U_A$ is unitary and, on the all-zero original
+block-encoding ancilla, encodes $\mathcal H_A/\alpha$.
+The nonzero spectral magnitudes of $\mathcal H_A$ are exactly the singular
+values of $A$, and
+\begin{equation}\label{eq:dilationbaseline}
+ \kappa_2(\mathcal H_A)=\kappa_2(A),\qquad
+ \mathcal H_A^{-1}(|0\rangle\otimes b)
+ =|1\rangle\otimes A^{-1}b.
+\end{equation}
+For the growing coupled chain, $\kappa_2(\mathcal H_C)\leq4\sqrt6$,
+independently of $N$ and $\varepsilon$.
+\end{proposition}
+\begin{proof}
+The two off-diagonal blocks of $\mathcal U_A$ are unitaries which
+exchange orthogonal flag sectors, making $\mathcal U_A$ unitary.
+Projecting the old ancilla gives the advertised block.
+Squaring $\mathcal H_A$ gives
+$\operatorname{diag}(AA^\dagger,A^\dagger A)$;
+its eigenvalue magnitudes are the singular values of $A$.
+Direct block inversion gives~\eqref{eq:dilationbaseline}.
+Apply Theorem~\ref{thm:growingchain} to obtain the last bound.
+\end{proof}
+\begin{remark}
+Hermitian dilation and singular-value-based linear solvers are established
+techniques~\cite{Gilyen2019,Berry2026}.  Proposition~\ref{prop:hermitian_dilation}
+is included as a diagnostic consequence rather than an algorithmic novelty claim.  It shows
+that the diverging optimal metric condition number is not inherited by the singular-value
+conditioning of the dilation.  Any end-to-end quantum cost still depends on the access model,
+state preparation and readout.
+\end{remark}
