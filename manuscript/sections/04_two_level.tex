@@ -1,0 +1,128 @@
+\section{An exactly solvable two-level Hamiltonian}
+Fix $g>0$ and $0\leq\gamma<g$. Let $\sigma_x,\sigma_y,\sigma_z$ denote Pauli
+matrices and consider
+\begin{equation}\label{eq:Hmodel}
+ H_{g,\gamma}=g\sigma_x+i\gamma\sigma_z
+ =\begin{pmatrix}i\gamma&g\\g&-i\gamma\end{pmatrix},
+ \qquad E=\sqrt{g^2-\gamma^2}.
+\end{equation}
+Its eigenvalues are $\pm E$ and it satisfies $H_{g,\gamma}^2=E^2\I$.
+At $\gamma=g$ both eigenvalues coalesce at zero and
+$H_{g,g}\ne 0$ is defective. All positive-metric statements below therefore
+apply only to the open interval $\gamma<g$.
+
+\begin{proposition}[Complete positive metric family]\label{prop:metricfamily}
+Up to a positive overall scalar, every positive metric compatible with
+$H_{g,\gamma}$ is
+\begin{equation}\label{eq:metricfamily}
+ \eta_{r,t}=\I+r\sigma_y+t\sigma_x,
+ \qquad r=\frac{\gamma}{g},\qquad r^2+t^2<1,
+ \quad t\in\Rn.
+\end{equation}
+Its eigenvalues are $1\pm\sqrt{r^2+t^2}$ and
+\begin{equation}\label{eq:metriccondition}
+ \kg(\eta_{r,t})
+ =\frac{1+\sqrt{r^2+t^2}}{1-\sqrt{r^2+t^2}}.
+\end{equation}
+The unique minimizing value of $t$ is $t=0$ (for a fixed overall normalization),
+and
+\begin{equation}\label{eq:optimalmetric}
+ \eta_*=\I+\frac{\gamma}{g}\sigma_y,
+ \qquad \min_{\eta>0:\,H^\dagger\eta=\eta H}\kg(\eta)
+ =\frac{g+\gamma}{g-\gamma}.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Every $2\times2$ Hermitian matrix has a unique expansion
+$\eta=a\I+b\sigma_x+c\sigma_y+d\sigma_z$ with real coefficients.
+Substitution into $H^\dagger\eta=\eta H$ gives
+$d=0$ and $c=(\gamma/g)a$. Positivity requires
+$a>\sqrt{b^2+c^2}$. Rescaling by $a>0$ and setting $t=b/a$
+yields~\eqref{eq:metricfamily}. Diagonalizing its Pauli-vector part
+gives~\eqref{eq:metriccondition}, which is increasing in $\abs{t}$.
+\end{proof}
+
+\begin{proposition}[Exact inversion, singular values and sharp certificate]
+\label{prop:modelsharp}
+For the minimizing metric~\eqref{eq:optimalmetric},
+\begin{align}
+ h_*:=\eta_*^{1/2}H_{g,\gamma}\eta_*^{-1/2}
+ &=E\sigma_x, \label{eq:hexact}\\
+ H_{g,\gamma}^{-1}&=\frac{H_{g,\gamma}}{E^2},\label{eq:hinverse}\\
+ \norm{H_{g,\gamma}^{-1}}_2&=\frac{1}{g-\gamma},
+ &\norm{h_*^{-1}}_2&=\frac{1}{E},\label{eq:inverseexact}\\
+ \kg(H_{g,\gamma})&=\kg(\eta_*)=\frac{g+\gamma}{g-\gamma},
+ &\kg(h_*)&=1.\label{eq:conditionexact}
+\end{align}
+Moreover,
+\begin{equation}\label{eq:sharp}
+ r_{\mathrm{sing}}(H_{g,\gamma})=g-\gamma
+ =\frac{E}{\sqrt{\kg(\eta_*)}}.
+\end{equation}
+Thus the sufficient perturbation radius~\eqref{eq:radiusbound} is sharp
+for this example and this metric.
+\end{proposition}
+\begin{proof}
+Using the Pauli algebra and the anticommutation of $\sigma_x$ and $\sigma_y$,
+$\eta_* H=(E^2/g)\sigma_x$ and
+$\eta_*^{-1/2}\sigma_x\eta_*^{-1/2}=(g/E)\sigma_x$.
+These identities give~\eqref{eq:hexact}. Since $H^2=E^2\I$,
+\eqref{eq:hinverse} follows. A direct multiplication gives
+\begin{equation}
+ H^\dagger H=(g^2+\gamma^2)\I+2g\gamma\sigma_y,
+\end{equation}
+whose eigenvalues are $(g+\gamma)^2$ and $(g-\gamma)^2$.
+Hence the singular values are $g\pm\gamma$, proving
+\eqref{eq:inverseexact},~\eqref{eq:conditionexact}, and
+$r_{\mathrm{sing}}(H)=g-\gamma$. Finally,
+$E^2=(g-\gamma)(g+\gamma)$ gives~\eqref{eq:sharp}.
+\end{proof}
+
+\begin{remark}[A crucial distinction near the exceptional point]
+As $\gamma\uparrow g$, the Hermitian representative satisfies
+$\kg(h_*)=1$ for every $\gamma<g$, while
+$\norm{h_*^{-1}}_2=E^{-1}\to\infty$.
+Its \emph{relative} condition number being one does not prevent
+\emph{absolute} inverse amplification. In the reference representation,
+$\norm{H^{-1}}_2=(g-\gamma)^{-1}$ diverges even faster.
+No positive definite metric persists at the defective endpoint.
+\end{remark}
+
+\subsection{The role of eigenvector overlap}
+The preceding metric computation has a useful two-dimensional geometric
+interpretation. We record it as an elementary auxiliary result, without
+claiming that general metric optimization is new~\cite{Krejcirik2018}.
+
+\begin{proposition}[Two-eigenvector overlap and condition-number minimum]
+\label{prop:overlap}
+Let a $2\times2$ matrix have distinct real eigenvalues and Euclidean-unit
+right eigenvectors $v_1,v_2$. Put $c=\abs{v_1^\dagger v_2}<1$.
+Among all positive metrics making the eigenvectors orthogonal, the minimum is
+\begin{equation}\label{eq:overlap}
+ \min_\eta\kg(\eta)=\frac{1+c}{1-c}.
+\end{equation}
+It is attained, up to overall positive scale, by
+$\eta_*=(VV^\dagger)^{-1}$, where $V=[v_1\ v_2]$.
+\end{proposition}
+\begin{proof}
+Adjust the phase of $v_2$ to make $v_1^\dagger v_2=c\geq0$.
+An orthonormal basis $e_+,e_-$ can be chosen so that
+$v_1=a e_++b e_-$ and $v_2=a e_+-b e_-$ with
+$a^2=(1+c)/2$ and $b^2=(1-c)/2$.
+In this basis, $v_1^\dagger\eta v_2=0$ implies
+$a^2\eta_{++}=b^2\eta_{--}$ and
+$\operatorname{Im}\eta_{+-}=0$.
+Since $\lambda_{\min}(\eta)\leq\eta_{++}$ and
+$\lambda_{\max}(\eta)\geq\eta_{--}$, it follows that
+$\kg(\eta)\geq\eta_{--}/\eta_{++}=a^2/b^2$.
+The choice $(VV^\dagger)^{-1}$ is diagonal in $e_\pm$ with
+entries $(1+c)^{-1},(1-c)^{-1}$ and attains the bound.
+Equality forces the off-diagonal entry to vanish, giving uniqueness up to scale.
+\end{proof}
+
+For~\eqref{eq:Hmodel}, normalized right eigenvectors have overlap
+$c=\gamma/g$. Thus~\eqref{eq:overlap} reproduces
+\eqref{eq:optimalmetric} and makes explicit the link between
+coalescing eigendirections and poor metric conditioning. The overlap
+identity is a diagnostic for this model, not a claim of universal
+exceptional-point scaling in arbitrary dimensions.
